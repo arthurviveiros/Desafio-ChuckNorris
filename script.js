@@ -1,10 +1,14 @@
-let botaochuck   = document.getElementById('botaochuck')
-let pedidopiada  = new XMLHttpRequest();
-pedidopiada.open('GET', 'https://api.chucknorris.io/jokes/random', true);
-pedidopiada.send();
-
-pedidopiada.onload = function () {
-    var data = JSON.parse(this.response);
-    document.getElementById("textboxpiada").innerHTML = data.value;
+function mandapiada() {
+    const chucksite = 'https://api.chucknorris.io/jokes/random';
+    fetch(chucksite, {
+        method: 'get' // opcional 
+    })
+    .then((piada) => piada.json())
+    .then(function(piada) { 
+        
+        document.getElementById("textobox").innerHTML = piada.id;
+    })
+    .catch(function(err) { 
+        console.error(err); 
+    });
 }
-botaochuck.addEventListener("click", pedidopiada);
